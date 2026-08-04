@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gabriel William Cardozo — Desenvolvedor Full Stack Júnior</title>
+<meta name="description" content="Portfólio de Gabriel William Cardozo — desenvolvedor Full Stack Júnior (Flutter, Dart, Java). Da indústria para o software."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F3F4F6; --panel:#EAECEF; --white:#FFFFFF;
+    --ink:#15181D; --ink-soft:#565C66; --ink-faint:#8A909B;
+    --line:#CFD4DB; --line-soft:#E1E4E9;
+    --blue:#1D4ED8; --blue-deep:#14309A; --amber:#D97706; --amber-soft:#FBBF24;
+    --graphite:#181B21; --graphite-2:#20242C;
+    --disp:'Space Grotesk',system-ui,sans-serif;
+    --body:'IBM Plex Sans',system-ui,sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--body); color:var(--ink); background:var(--paper);
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+    background-image:
+      linear-gradient(var(--line-soft) 1px,transparent 1px),
+      linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);
+    background-size:32px 32px;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  .mono{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+
+  /* ---- NAV ---- */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(243,244,246,.82);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{font-family:var(--disp);font-weight:700;font-size:1.1rem;letter-spacing:.02em;display:flex;align-items:center;gap:9px}
+  .brand .tick{width:12px;height:12px;border-left:2px solid var(--blue);border-bottom:2px solid var(--blue)}
+  .nav-links{display:flex;gap:26px}
+  .nav-links a{font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);transition:color .2s}
+  .nav-links a:hover{color:var(--blue)}
+  .nav-cta{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;border:1.5px solid var(--ink);padding:8px 14px;transition:.2s}
+  .nav-cta:hover{background:var(--ink);color:var(--paper)}
+
+  /* ---- HERO ---- */
+  .hero{position:relative;padding:76px 0 64px}
+  .hero .frame{position:relative;border:1px solid var(--line);background:var(--white);padding:48px 44px}
+  .hero .frame::before,.hero .frame::after{content:"";position:absolute;width:16px;height:16px}
+  .hero .frame::before{top:-1px;left:-1px;border-left:2.5px solid var(--blue);border-top:2.5px solid var(--blue)}
+  .hero .frame::after{bottom:-1px;right:-1px;border-right:2.5px solid var(--blue);border-bottom:2.5px solid var(--blue)}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;margin-bottom:20px}
+  .eyebrow .dot{width:7px;height:7px;background:var(--amber);border-radius:50%}
+  h1.title{font-family:var(--disp);font-weight:700;letter-spacing:-.02em;line-height:1.02;
+    font-size:clamp(2.6rem,7.5vw,5.2rem);margin-bottom:22px}
+  h1.title em{font-style:normal;color:var(--blue);position:relative}
+  h1.title em::after{content:"";position:absolute;left:0;right:0;bottom:6px;height:10px;background:rgba(251,191,36,.35);z-index:-1}
+  .lead{font-size:1.12rem;color:var(--ink-soft);max-width:56ch;margin-bottom:30px}
+  .lead b{color:var(--ink);font-weight:600}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px}
+  .btn{font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;
+    padding:12px 18px;border:1.5px solid var(--ink);display:inline-flex;align-items:center;gap:8px;transition:.18s;background:var(--white)}
+  .btn:hover{transform:translateY(-2px)}
+  .btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+  .btn.primary:hover{background:var(--blue-deep);border-color:var(--blue-deep)}
+  .btn.ghost:hover{background:var(--ink);color:var(--paper)}
+  /* dimension annotations */
+  .dims{display:flex;flex-wrap:wrap;gap:0;margin-top:34px;border-top:1px dashed var(--line);padding-top:0}
+  .dim{flex:1;min-width:180px;padding:16px 18px;border-right:1px dashed var(--line)}
+  .dim:last-child{border-right:none}
+  .dim .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;color:var(--ink-faint);text-transform:uppercase;display:block;margin-bottom:5px}
+  .dim .v{font-family:var(--mono);font-size:.82rem;color:var(--ink);letter-spacing:.02em}
+  .dim .v .amber{color:var(--amber)}
+
+  /* ---- SECTION SHELL ---- */
+  section{padding:66px 0;position:relative}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:34px}
+  .sec-head .num{font-family:var(--mono);font-size:.78rem;color:var(--blue);letter-spacing:.1em}
+  .sec-head h2{font-family:var(--disp);font-weight:600;font-size:clamp(1.7rem,4vw,2.4rem);letter-spacing:-.01em}
+  .sec-head .rule{flex:1;height:1px;background:var(--line);align-self:center}
+
+  /* ---- SOBRE ---- */
+  .about-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:36px;align-items:start}
+  .about-grid p{margin-bottom:16px;color:var(--ink-soft);font-size:1.02rem}
+  .about-grid p b{color:var(--ink);font-weight:600}
+  .spec{border:1px solid var(--line);background:var(--white)}
+  .spec .row{display:flex;justify-content:space-between;gap:14px;padding:13px 16px;border-bottom:1px solid var(--line-soft)}
+  .spec .row:last-child{border-bottom:none}
+  .spec .row .k{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;color:var(--ink-faint);text-transform:uppercase}
+  .spec .row .v{font-family:var(--mono);font-size:.78rem;color:var(--ink);text-align:right}
+
+  /* ---- SKILLS ---- */
+  .skills{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .skill-card{border:1px solid var(--line);background:var(--white);padding:20px 22px;position:relative}
+  .skill-card::before{content:"";position:absolute;top:-1px;left:22px;width:36px;height:2px;background:var(--blue)}
+  .skill-card h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-family:var(--mono);font-size:.76rem;padding:6px 11px;border:1px solid var(--line);background:var(--paper);letter-spacing:.02em}
+  .chip.key{border-color:var(--blue);color:var(--blue-deep)}
+  .skill-card.learn .chip{border-style:dashed;color:var(--ink-soft)}
+
+  /* ---- PROJETO (dark showcase) ---- */
+  .project{background:var(--graphite);color:#E6E8EC;border:1px solid var(--graphite-2)}
+  .project .wrap{padding-top:56px;padding-bottom:56px}
+  .proj-top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:8px}
+  .proj-label{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--amber-soft)}
+  .proj-title{font-family:var(--disp);font-weight:700;font-size:clamp(2.4rem,6vw,3.6rem);letter-spacing:-.02em;line-height:1}
+  .proj-sub{color:#AEB4BE;max-width:60ch;margin:14px 0 30px;font-size:1.05rem}
+  .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--graphite-2);border:1px solid var(--graphite-2)}
+  .cell{background:var(--graphite);padding:22px 24px}
+  .cell .h{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber-soft);margin-bottom:12px}
+  .cell ul{list-style:none}
+  .cell li{position:relative;padding-left:18px;margin-bottom:8px;color:#C7CCD4;font-size:.95rem}
+  .cell li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;border-left:1.5px solid var(--blue);border-bottom:1.5px solid var(--blue)}
+  .cell.full{grid-column:1/-1}
+  .cell.full p{color:#C7CCD4;font-size:.97rem}
+  .cell.full p b{color:#fff}
+  .proj-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin-top:26px}
+  .stack-chips{display:flex;flex-wrap:wrap;gap:8px}
+  .stack-chips .c{font-family:var(--mono);font-size:.74rem;padding:6px 11px;border:1px solid #3A4048;color:#C7CCD4}
+  .btn.repo{background:transparent;border-color:var(--amber-soft);color:var(--amber-soft)}
+  .btn.repo:hover{background:var(--amber-soft);color:var(--graphite)}
+
+  /* ---- TRAJETÓRIA ---- */
+  .timeline{border-left:2px solid var(--line);margin-left:6px}
+  .tl-item{position:relative;padding:0 0 30px 28px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-item::before{content:"";position:absolute;left:-7px;top:4px;width:12px;height:12px;background:var(--white);border:2px solid var(--blue);border-radius:50%}
+  .tl-item.now::before{background:var(--amber);border-color:var(--amber)}
+  .tl-date{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--blue);text-transform:uppercase;margin-bottom:4px}
+  .tl-item h3{font-family:var(--disp);font-weight:600;font-size:1.12rem;margin-bottom:3px}
+  .tl-item p{color:var(--ink-soft);font-size:.96rem}
+
+  /* ---- CONTATO ---- */
+  .contact{text-align:center}
+  .contact .frame{border:1px solid var(--line);background:var(--white);padding:52px 32px;position:relative}
+  .contact .frame::before,.contact .frame::after{content:"";position:absolute;width:16px;height:16px}
+  .contact .frame::before{top:-1px;left:-1px;border-left:2.5px solid var(--amber);border-top:2.5px solid var(--amber)}
+  .contact .frame::after{bottom:-1px;right:-1px;border-right:2.5px solid var(--amber);border-bottom:2.5px solid var(--amber)}
+  .contact h2{font-family:var(--disp);font-weight:700;font-size:clamp(2rem,5vw,3rem);letter-spacing:-.01em;margin-bottom:12px}
+  .contact p{color:var(--ink-soft);max-width:48ch;margin:0 auto 28px}
+  .contact .cta-row{justify-content:center}
+
+  footer{border-top:1px solid var(--line);padding:26px 0;background:var(--white)}
+  .foot-in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+  .foot-in span{font-family:var(--mono);font-size:.72rem;color:var(--ink-faint);letter-spacing:.04em}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* responsive */
+  @media(max-width:820px){
+    .about-grid{grid-template-columns:1fr}
+    .skills{grid-template-columns:1fr}
+    .proj-grid{grid-template-columns:1fr}
+  }
+  @media(max-width:640px){
+    .nav-links{display:none}
+    .hero .frame{padding:32px 22px}
+    .dim{min-width:100%;border-right:none;border-bottom:1px dashed var(--line)}
+    .dim:last-child{border-bottom:none}
+    body{background-size:26px 26px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+    .btn:hover{transform:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="brand"><span class="tick"></span>Gabriel Cardozo</a>
+    <nav class="nav-links">
+      <a href="#sobre">Sobre</a>
+      <a href="#skills">Competências</a>
+      <a href="#projeto">Projeto</a>
+      <a href="#trajetoria">Trajetória</a>
+    </nav>
+    <a href="#contato" class="nav-cta">Contato</a>
+  </div>
+</header>
+
+<a id="top"></a>
+<section class="hero">
+  <div class="wrap">
+    <div class="frame reveal">
+      <span class="eyebrow mono"><span class="dot"></span>// Desenvolvedor Full Stack Júnior</span>
+      <h1 class="title">Da indústria<br/>ao <em>software</em>.</h1>
+      <p class="lead"><b>Gabriel William Cardozo.</b> Construo aplicações com <b>Java</b>, <b>Flutter</b> e <b>Dart</b>, trazendo para o código a precisão que aprendi elaborando a programação de máquinas CNC a partir de desenhos técnicos.</p>
+      <div class="cta-row">
+        <a href="#projeto" class="btn primary">Ver o projeto ↓</a>
+        <a href="https://github.com/Gabriel-WC" target="_blank" rel="noopener" class="btn ghost">GitHub</a>
+        <a href="https://www.linkedin.com/in/gabriel-william-cardozo-b89501275" target="_blank" rel="noopener" class="btn ghost">LinkedIn</a>
+        <a href="./Curriculo_Gabriel_Cardozo.pdf" class="btn ghost">Baixar currículo</a>
+      </div>
+      <div class="dims">
+        <div class="dim"><span class="k">Local</span><span class="v">Jaraguá do Sul / SC</span></div>
+        <div class="dim"><span class="k">Stack</span><span class="v">Java · Flutter · Dart</span></div>
+        <div class="dim"><span class="k">Status</span><span class="v"><span class="amber">●</span> Disponível p/ 1ª oportunidade</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="num">01</span><h2>Sobre</h2><span class="rule"></span></div>
+    <div class="about-grid">
+      <div class="reveal">
+        <p>Comecei na indústria como desenhista copista (CNC): interpretava desenhos técnicos e elaborava a programação das máquinas em software especializado — um trabalho que exige precisão, disciplina e atenção total aos detalhes. Foi ali que descobri que gosto mesmo é de <b>entender como as coisas funcionam por dentro</b>.</p>
+        <p>Hoje aplico essa mentalidade no desenvolvimento de software. Sou formado em <b>Análise e Desenvolvimento de Sistemas</b> (UniSENAI, jul/2026) e meu foco é o ecossistema <b>Java/Spring Boot</b>, com prática real em <b>Flutter/Dart</b>. Não me contento em só fazer funcionar: busco a arquitetura, as boas práticas e o porquê de cada decisão.</p>
+        <p>Aprendo tecnologias novas com rapidez, prezo por código limpo e organizado e procuro sempre entregar algo melhor do que o esperado.</p>
+      </div>
+      <div class="spec reveal">
+        <div class="row"><span class="k">Formação</span><span class="v">Tec. em ADS · UniSENAI (jul/2026)</span></div>
+        <div class="row"><span class="k">Foco</span><span class="v">Java & Mobile</span></div>
+        <div class="row"><span class="k">Aprendendo</span><span class="v">Docker · React · Testes</span></div>
+        <div class="row"><span class="k">Trabalho</span><span class="v">Presencial (SC) ou remoto</span></div>
+        <div class="row"><span class="k">Idioma</span><span class="v">Português</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="num">02</span><h2>Competências</h2><span class="rule"></span></div>
+    <div class="skills">
+      <div class="skill-card reveal">
+        <h3>Back-end · foco</h3>
+        <div class="chips"><span class="chip key">Java</span><span class="chip key">Spring Boot</span><span class="chip">APIs REST</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Mobile · projeto real</h3>
+        <div class="chips"><span class="chip key">Flutter</span><span class="chip key">Dart</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Front-end</h3>
+        <div class="chips"><span class="chip">JavaScript</span><span class="chip">HTML</span><span class="chip">CSS</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Dados & Ferramentas</h3>
+        <div class="chips"><span class="chip">SQL</span><span class="chip">MySQL</span><span class="chip key">Git</span><span class="chip">GitHub Actions</span><span class="chip">VS Code</span><span class="chip">Insomnia</span></div>
+      </div>
+      <div class="skill-card learn reveal" style="grid-column:1/-1">
+        <h3>Aprendendo agora</h3>
+        <div class="chips"><span class="chip">Python</span><span class="chip">Docker</span><span class="chip">FastAPI</span><span class="chip">Flask</span><span class="chip">React</span><span class="chip">Testes automatizados</span><span class="chip">Cloud</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projeto" class="project">
+  <div class="wrap">
+    <div class="proj-top reveal">
+      <div>
+        <div class="proj-label">// Projeto em destaque</div>
+        <div class="proj-title">ALFAMED</div>
+      </div>
+      <div class="mono" style="color:#7B828C">App de saúde · Flutter + API REST</div>
+    </div>
+    <p class="proj-sub reveal">Aplicativo móvel voltado ao paciente — agendamento de consultas, prontuário, exames e anamnese. É a melhor amostra prática do que sei fazer.</p>
+    <div class="proj-grid reveal">
+      <div class="cell">
+        <div class="h">Arquitetura</div>
+        <ul>
+          <li>Modular por features</li>
+          <li>Flavors de ambiente (dev/prod)</li>
+          <li>CI/CD com GitHub Actions</li>
+          <li>Camada de serviço com models tolerantes a nulos</li>
+        </ul>
+      </div>
+      <div class="cell">
+        <div class="h">Funcionalidades</div>
+        <ul>
+          <li>Cadastro, login e sessão</li>
+          <li>Agendamento (unidade → especialidade → vaga)</li>
+          <li>Prontuário com exames</li>
+          <li>Anamnese e perfil do paciente</li>
+        </ul>
+      </div>
+      <div class="cell full">
+        <div class="h">Desafio que resolvi</div>
+        <p>O login falhava no APK instalado com <b>401 Unauthorized</b>. Diagnostiquei que a proteção <b>CSRF</b> do back-end exigia o cabeçalho <b>Origin</b>, ausente nas requisições do cliente HTTP no mobile — e corrigi enviando <b>Origin/Referer</b> nas chamadas de autenticação. Também implementei tratamento de erros por código HTTP (409/410/422) com recarga automática de vagas.</p>
+      </div>
+    </div>
+    <div class="proj-foot reveal">
+      <div class="stack-chips">
+        <span class="c">Flutter</span><span class="c">Dart</span><span class="c">API REST</span><span class="c">Git</span><span class="c">GitHub Actions</span>
+      </div>
+      <a href="https://github.com/AlfamedSoftware" target="_blank" rel="noopener" class="btn repo">Ver repositório →</a>
+    </div>
+  </div>
+</section>
+
+<section id="trajetoria">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="num">03</span><h2>Trajetória</h2><span class="rule"></span></div>
+    <div class="timeline">
+      <div class="tl-item now reveal">
+        <div class="tl-date">Atual</div>
+        <h3>Operador de Usinagem — WEG</h3>
+        <p>Atuação na indústria enquanto consolido a transição para o desenvolvimento de software.</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">Jul/2026</div>
+        <h3>Tecnólogo em Análise e Desenvolvimento de Sistemas — concluído</h3>
+        <p>UniSENAI Jaraguá do Sul. Certificações: Analista de Requisitos de Sistemas TI (ago/2025) e Desenvolvedor de Software.</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">Out/2023 – Out/2025</div>
+        <h3>Desenhista Copista (CNC) — Baumann</h3>
+        <p>Interpretação de desenhos técnicos e elaboração da programação CNC das máquinas em software específico — precisão que hoje aplico no código. Desenho técnico e SolidWorks (certificação SKA Nível 1).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contato" class="contact">
+  <div class="wrap">
+    <div class="frame reveal">
+      <h2>Vamos conversar?</h2>
+      <p>Estou em busca da minha primeira oportunidade como Desenvolvedor Full Stack Júnior. Respondo rápido.</p>
+      <div class="cta-row">
+        <a href="mailto:gaabriell.cardozoo@gmail.com" class="btn primary">Enviar e-mail</a>
+        <a href="https://www.linkedin.com/in/gabriel-william-cardozo-b89501275" target="_blank" rel="noopener" class="btn ghost">LinkedIn</a>
+        <a href="https://github.com/Gabriel-WC" target="_blank" rel="noopener" class="btn ghost">GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <span>© 2026 Gabriel William Cardozo</span>
+    <span>Jaraguá do Sul / SC · Brasil</span>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
