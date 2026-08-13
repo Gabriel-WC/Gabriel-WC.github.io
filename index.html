@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Gabriel William Cardozo — Desenvolvedor Full Stack Júnior</title>
-<meta name="description" content="Portfólio de Gabriel William Cardozo — desenvolvedor Full Stack Júnior (Flutter, Dart, Java). Da indústria para o software."/>
+<meta name="description" content="Portfólio de Gabriel William Cardozo — Desenvolvedor Full Stack Júnior com projetos em Java, Spring Boot, Flutter, Dart e JavaScript. Da indústria para o software."/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -122,6 +122,42 @@
   .btn.repo{background:transparent;border-color:var(--amber-soft);color:var(--amber-soft)}
   .btn.repo:hover{background:var(--amber-soft);color:var(--graphite)}
 
+
+  /* ---- PROJETOS ---- */
+  .project-sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:34px}
+  .project-sec-head .num{font-family:var(--mono);font-size:.78rem;color:var(--amber-soft);letter-spacing:.1em}
+  .project-sec-head h2{font-family:var(--disp);font-weight:600;font-size:clamp(1.7rem,4vw,2.4rem);letter-spacing:-.01em;color:#fff}
+  .project-sec-head .rule{flex:1;height:1px;background:#343942;align-self:center}
+  .secondary-project{margin-top:48px;border:1px solid #343942;background:#1D2128;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);overflow:hidden}
+  .secondary-media{position:relative;min-height:100%;background:#11151A;overflow:hidden;perspective:1400px}
+  .secondary-media__stage{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .68s cubic-bezier(.2,.8,.2,1)}
+  .secondary-media.is-qr .secondary-media__stage{transform:rotateY(180deg)}
+  .secondary-media__face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+  .secondary-media__preview{background:#11151A}
+  .secondary-media__preview::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(14,17,21,.62));pointer-events:none}
+  .secondary-media__preview img{width:100%;height:100%;min-height:430px;object-fit:cover;display:block;transition:transform .45s ease}
+  .secondary-project:hover .secondary-media:not(.is-qr) .secondary-media__preview img{transform:scale(1.025)}
+  .secondary-media__qr{transform:rotateY(180deg);display:grid;place-items:center;background:linear-gradient(145deg,#101913,#0C1110);padding:22px}
+  .secondary-media__qr img{display:block;width:min(94%,560px);height:auto;max-height:calc(100% - 34px);object-fit:contain;filter:drop-shadow(0 18px 34px rgba(0,0,0,.30))}
+  .secondary-media__tag{position:absolute;z-index:5;left:20px;bottom:18px;font-family:var(--mono);font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:rgba(24,27,33,.78);border:1px solid rgba(255,255,255,.18);padding:8px 10px;backdrop-filter:blur(8px);transition:opacity .22s ease,transform .22s ease}
+  .secondary-media.is-qr .secondary-media__tag{opacity:0;transform:translateY(8px);pointer-events:none}
+  .secondary-media__qr-hint{position:absolute;z-index:5;left:50%;bottom:17px;transform:translate(-50%,8px);opacity:0;white-space:nowrap;font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--amber-soft);background:rgba(14,17,21,.88);border:1px solid rgba(251,191,36,.28);padding:8px 11px;transition:opacity .25s ease .22s,transform .25s ease .22s;pointer-events:none}
+  .secondary-media.is-qr .secondary-media__qr-hint{opacity:1;transform:translate(-50%,0)}
+  .secondary-content{padding:30px 30px 28px;display:flex;flex-direction:column;justify-content:center}
+  .secondary-content h3{font-family:var(--disp);font-weight:700;font-size:clamp(2rem,4vw,2.8rem);line-height:1.04;margin:7px 0 12px;color:#fff}
+  .secondary-sub{color:#C7CCD4;font-size:1rem;line-height:1.65}
+  .secondary-highlights{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:22px 0}
+  .secondary-highlights span{position:relative;padding:9px 10px 9px 26px;border:1px solid #343942;background:#181B21;color:#D5D9DF;font-family:var(--mono);font-size:.69rem;letter-spacing:.02em}
+  .secondary-highlights span::before{content:"✓";position:absolute;left:10px;color:var(--amber-soft);font-weight:700}
+  .secondary-note{color:#9FA6B0;font-size:.9rem;line-height:1.6;margin-bottom:18px}
+  .secondary-stack{margin-bottom:20px}
+  .secondary-actions{display:flex;flex-wrap:wrap;gap:10px}
+  .btn.project-demo{background:var(--blue);border-color:var(--blue);color:#fff}
+  .btn.project-demo:hover{background:#315DE0;border-color:#315DE0}
+  .btn.qr-toggle{background:transparent;border-color:#4B525D;color:#C7CCD4;cursor:pointer}
+  .btn.qr-toggle:hover{background:#2A2F37;color:#fff}
+
+
   /* ---- TRAJETÓRIA ---- */
   .timeline{border-left:2px solid var(--line);margin-left:6px}
   .tl-item{position:relative;padding:0 0 30px 28px}
@@ -155,6 +191,9 @@
     .about-grid{grid-template-columns:1fr}
     .skills{grid-template-columns:1fr}
     .proj-grid{grid-template-columns:1fr}
+    .secondary-project{grid-template-columns:1fr}
+    .secondary-media{min-height:430px}
+    .secondary-media__preview img{min-height:430px;max-height:430px}
   }
   @media(max-width:640px){
     .nav-links{display:none}
@@ -162,11 +201,15 @@
     .dim{min-width:100%;border-right:none;border-bottom:1px dashed var(--line)}
     .dim:last-child{border-bottom:none}
     body{background-size:26px 26px}
+    .secondary-content{padding:24px 20px}
+    .secondary-highlights{grid-template-columns:1fr}
+    .secondary-actions .btn{width:100%;justify-content:center}
   }
   @media(prefers-reduced-motion:reduce){
     *{scroll-behavior:auto}
     .reveal{opacity:1;transform:none;transition:none}
     .btn:hover{transform:none}
+    .secondary-media__stage{transition:none}
   }
 </style>
 </head>
@@ -178,7 +221,7 @@
     <nav class="nav-links">
       <a href="#sobre">Sobre</a>
       <a href="#skills">Competências</a>
-      <a href="#projeto">Projeto</a>
+      <a href="#projetos">Projetos</a>
       <a href="#trajetoria">Trajetória</a>
     </nav>
     <a href="#contato" class="nav-cta">Contato</a>
@@ -191,16 +234,16 @@
     <div class="frame reveal">
       <span class="eyebrow mono"><span class="dot"></span>// Desenvolvedor Full Stack Júnior</span>
       <h1 class="title">Da indústria<br/>ao <em>software</em>.</h1>
-      <p class="lead"><b>Gabriel William Cardozo.</b> Construo aplicações com <b>Java</b>, <b>Flutter</b> e <b>Dart</b>, trazendo para o código a precisão que aprendi elaborando a programação de máquinas CNC a partir de desenhos técnicos.</p>
+      <p class="lead"><b>Gabriel William Cardozo.</b> Construo aplicações <b>web e mobile</b> com <b>Java</b>, <b>Flutter</b>, <b>Dart</b> e <b>JavaScript</b>, trazendo para o código a precisão que aprendi elaborando a programação de máquinas CNC a partir de desenhos técnicos.</p>
       <div class="cta-row">
-        <a href="#projeto" class="btn primary">Ver o projeto ↓</a>
+        <a href="#projetos" class="btn primary">Ver projetos ↓</a>
         <a href="https://github.com/Gabriel-WC" target="_blank" rel="noopener" class="btn ghost">GitHub</a>
         <a href="https://www.linkedin.com/in/gabriel-william-cardozo-b89501275" target="_blank" rel="noopener" class="btn ghost">LinkedIn</a>
         <a href="./Curriculo_Gabriel_Cardozo.pdf" class="btn ghost">Baixar currículo</a>
       </div>
       <div class="dims">
         <div class="dim"><span class="k">Local</span><span class="v">Jaraguá do Sul / SC</span></div>
-        <div class="dim"><span class="k">Stack</span><span class="v">Java · Flutter · Dart</span></div>
+        <div class="dim"><span class="k">Stack</span><span class="v">Java · Flutter · Dart · JavaScript</span></div>
         <div class="dim"><span class="k">Status</span><span class="v"><span class="amber">●</span> Disponível p/ 1ª oportunidade</span></div>
       </div>
     </div>
@@ -255,8 +298,9 @@
   </div>
 </section>
 
-<section id="projeto" class="project">
+<section id="projetos" class="project">
   <div class="wrap">
+    <div class="project-sec-head reveal"><span class="num">03</span><h2>Projetos</h2><span class="rule"></span></div>
     <div class="proj-top reveal">
       <div>
         <div class="proj-label">// Projeto em destaque</div>
@@ -295,12 +339,57 @@
       </div>
       <a href="https://github.com/AlfamedSoftware" target="_blank" rel="noopener" class="btn repo">Ver repositório →</a>
     </div>
+
+    <article class="secondary-project reveal" aria-labelledby="sabor-title">
+      <div class="secondary-media" id="sabor-media">
+        <div class="secondary-media__stage">
+          <div class="secondary-media__face secondary-media__preview">
+            <img src="./assets/sabor-da-serra-preview.jpg" alt="Prévia do cardápio digital Sabor da Serra" loading="lazy" width="1440" height="810"/>
+          </div>
+          <div class="secondary-media__face secondary-media__qr" aria-hidden="true">
+            <img src="./assets/qr-code.png" alt="QR Code que abre a demo Sabor da Serra" width="1000" height="1200"/>
+          </div>
+        </div>
+        <span class="secondary-media__tag">Projeto autoral · Front-end comercial</span>
+        <span class="secondary-media__qr-hint" aria-hidden="true">Escaneie para abrir a demo</span>
+      </div>
+      <div class="secondary-content">
+        <div>
+          <div class="proj-label">// Projeto finalizado</div>
+          <h3 id="sabor-title">Sabor da Serra</h3>
+          <p class="secondary-sub">Cardápio digital responsivo criado como demonstração comercial para restaurantes, com foco em experiência de uso, apresentação visual e fluxo de pedido.</p>
+        </div>
+
+        <div class="secondary-highlights" aria-label="Destaques do projeto">
+          <span>Busca instantânea</span>
+          <span>Filtros por categoria</span>
+          <span>Favoritos</span>
+          <span>Carrinho com LocalStorage</span>
+          <span>Modal de produtos</span>
+          <span>Responsivo</span>
+        </div>
+
+        <p class="secondary-note">Desenvolvido sem frameworks, com configuração centralizada para facilitar reutilização em outros estabelecimentos e deploy contínuo pelo Netlify.</p>
+
+        <div class="stack-chips secondary-stack">
+          <span class="c">HTML5</span><span class="c">CSS3</span><span class="c">JavaScript</span><span class="c">LocalStorage</span><span class="c">Netlify</span>
+        </div>
+
+        <div class="secondary-actions">
+          <a href="https://demo-sabor-da-serra.netlify.app/" target="_blank" rel="noopener" class="btn project-demo">Ver demo →</a>
+          <a href="https://github.com/Gabriel-WC/Sabor-da-Serra" target="_blank" rel="noopener" class="btn repo">Ver código →</a>
+          <button type="button" class="btn qr-toggle" aria-controls="sabor-media" aria-pressed="false">QR Code</button>
+        </div>
+
+      </div>
+    </article>
   </div>
 </section>
 
+
 <section id="trajetoria">
   <div class="wrap">
-    <div class="sec-head reveal"><span class="num">03</span><h2>Trajetória</h2><span class="rule"></span></div>
+    <div class="sec-head reveal"><span class="num">04</span><h2>Trajetória</h2><span class="rule"></span></div>
     <div class="timeline">
       <div class="tl-item now reveal">
         <div class="tl-date">Atual</div>
@@ -343,6 +432,24 @@
 </footer>
 
 <script>
+  const qrToggleButton = document.querySelector('.secondary-actions .qr-toggle');
+  const saborMedia = document.getElementById('sabor-media');
+
+  function toggleSaborQr() {
+    if (!qrToggleButton || !saborMedia) return;
+    const showingQr = saborMedia.classList.toggle('is-qr');
+    qrToggleButton.setAttribute('aria-pressed', String(showingQr));
+    qrToggleButton.textContent = showingQr ? 'Voltar preview' : 'QR Code';
+    const previewFace = saborMedia.querySelector('.secondary-media__preview');
+    const qrFace = saborMedia.querySelector('.secondary-media__qr');
+    if (previewFace) previewFace.setAttribute('aria-hidden', String(showingQr));
+    if (qrFace) qrFace.setAttribute('aria-hidden', String(!showingQr));
+  }
+
+  if (qrToggleButton && saborMedia) {
+    qrToggleButton.addEventListener('click', toggleSaborQr);
+  }
+
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
   },{threshold:0.12});
